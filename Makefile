@@ -6,28 +6,32 @@
 #    By: nsakanou <nsakanou@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/10 18:31:01 by nsakanou          #+#    #+#              #
-#    Updated: 2023/11/11 16:51:05 by nsakanou         ###   ########.fr        #
+#    Updated: 2024/01/30 19:04:05 by nsakanou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 
+INCLUDES = -I ./includes
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror $(INCLUDES)
 RM = rm -f
 
-SRCS =	
+SRCS =	srcs/main.c \
+		srcs/philo/philo_one.c
 
 OBJS = $(SRCS:%.c=%.o)
 
+
+.PHONY: all clean fclean re
+
 all: $(NAME)
 
-
-$(NAME): $(OBJS) $(PRINTF)
-	$(CC) $(CFLAGS) $(OBJS) $(PRINTF) -o $(NAME)
-
 .c.o:
-	$(CC) $(CFLAGS) -o $@ -c $<
+	$(CC) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+$(NAME): $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) $(INCLUDES) -o $@
 
 clean:
 	$(RM) $(OBJS)
@@ -36,5 +40,3 @@ fclean: clean
 	$(RM) $(NAME)
 
 re: fclean all
-
-.PHONY: all clean fclean re
