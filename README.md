@@ -52,13 +52,13 @@ For the bonus part of this project, the problem is the same with a few differenc
 To run the program:
 ```zsh
 #!/bin/zsh
-./philo <number_of_philosophers> <time_to_die time_to_eat> <time_to_sleep> [number_of_times_each_philosopher_must_eat]
+./philo_bonus <number_of_philosophers> <time_to_die time_to_eat> <time_to_sleep> [number_of_times_each_philosopher_must_eat]
 ```
 
 Run the program with the following arguments:
 
 ```zsh
 #!/bin/zsh
-./philo 4 800 200 200 5
+./philo_bonus 4 800 200 200 5
 ```
 If the arguments are valid, the program will output the actions of each philosopher until one of them dies or until all of them have eaten number_of_times_each_philo_must_eat, if specified.
