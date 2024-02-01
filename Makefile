@@ -6,13 +6,13 @@
 #    By: nsakanou <nsakanou@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/10 18:31:01 by nsakanou          #+#    #+#              #
-#    Updated: 2024/01/30 19:04:05 by nsakanou         ###   ########.fr        #
+#    Updated: 2024/02/01 14:33:44 by nsakanou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 
-INCLUDES = -I ./includes
+INCLUDES = -I ./includes -I ./srcs
 CC = cc
 CFLAGS = -Wall -Wextra -Werror $(INCLUDES)
 RM = rm -f
