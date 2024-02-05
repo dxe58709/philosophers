@@ -1,6 +1,9 @@
 <h1 align="center">
 	Philosophers
 </h1>
+<h2 align="center">
+<img src="https://github.com/dxe58709/philosophers/assets/133973097/b37fdd85-2efd-470a-ba8a-9ca9dc9152b0" alt=42 project philosophers>
+</h2>
 
 ## Summary
 > <i>Philosophers is a 42 school project designed around Edsger Dijkstra's famous dining philosophers problem.<br>
