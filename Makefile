@@ -6,7 +6,7 @@
 #    By: nsakanou <nsakanou@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/10 18:31:01 by nsakanou          #+#    #+#              #
-#    Updated: 2024/02/01 14:33:44 by nsakanou         ###   ########.fr        #
+#    Updated: 2024/02/07 20:21:00 by nsakanou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,12 @@ CFLAGS = -Wall -Wextra -Werror $(INCLUDES)
 RM = rm -f
 
 SRCS =	srcs/main.c \
-		srcs/philo/philo_one.c
+		srcs/philo/init.c \
+		srcs/philo/philo_actions.c \
+		srcs/philo/philo_atoi.c \
+		srcs/philo/philo_utils.c \
+		srcs/philo/thread.c \
+	#	srcs/philo_bonus/philo_bonus.c
 
 OBJS = $(SRCS:%.c=%.o)
 
