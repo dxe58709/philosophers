@@ -6,7 +6,7 @@
 /*   By: nsakanou <nsakanou@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 16:28:07 by nsakanou          #+#    #+#             */
-/*   Updated: 2024/02/07 20:39:49 by nsakanou         ###   ########.fr       */
+/*   Updated: 2024/02/08 15:28:36 by nsakanou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@ void	init_args(int argc, char **argv, t_args *args)
 		args->number_of_eat = -1;
 }
 
-//forkにunsignedは割り当てできない
-void	init_philo_data(t_philo *philo)
+void	init_philo_data(t_philo *philo, pthread_mutex_t *forks)
 {
 	unsigned int	i;
 
@@ -33,8 +32,8 @@ void	init_philo_data(t_philo *philo)
 	while (i < philo->args.number_of_philo)
 	{
 		philo[i].philo_id = i + 1;
-		philo[i].right_fork = i;
-		philo[i].left_fork = (i + 1) % philo->args.number_of_philo;
+		philo[i].right_fork = &forks[i];
+		philo[i].left_fork = &forks[(i + 1) % philo->args.number_of_philo];
 		i++;
 	}
 }

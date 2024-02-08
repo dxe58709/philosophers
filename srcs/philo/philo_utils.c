@@ -6,7 +6,7 @@
 /*   By: nsakanou <nsakanou@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 16:33:30 by nsakanou          #+#    #+#             */
-/*   Updated: 2024/02/08 14:25:24 by nsakanou         ###   ########.fr       */
+/*   Updated: 2024/02/08 16:19:37 by nsakanou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,14 @@ void	print_message(char *str, t_philo *philo)
 		printf("%d%d%s\n", get_current_time(), philo->philo_id, str);
 		pthread_mutex_unlock(&philo->check_die->mutex);
 	}
+}
+
+int	ft_usleep(int ms, t_philo *philo)
+{
+	int	start;
+
+	start = get_current_time();
+	while ((get_current_time() - start) < ms && !check_philo_die(philo))
+		usleep(50);
+	return (0);
 }

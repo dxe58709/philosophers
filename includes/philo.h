@@ -6,7 +6,7 @@
 /*   By: nsakanou <nsakanou@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 16:49:14 by nsakanou          #+#    #+#             */
-/*   Updated: 2024/02/07 20:34:50 by nsakanou         ###   ########.fr       */
+/*   Updated: 2024/02/08 16:15:43 by nsakanou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,18 +55,20 @@ typedef struct s_philo
 
 //actions
 int				check_philo_die(t_philo *philo);
+void			philo_eating(t_philo *philo);
 void			philo_sleeping(t_philo *philo);
 void			philo_thinking(t_philo *philo);
 
 //utils
 unsigned int	get_current_time(void);
 void			print_message(char *str, t_philo *philo);
+int				ft_usleep(int ms, t_philo *philo);
 
 //atoi
 int				philo_atoi(char *str);
 
 //init
 void			init_args(int argc, char **argv, t_args *args);
-void			init_philo_data(t_philo *philo);
+void			init_philo_data(t_philo *philo, pthread_mutex_t *forks);
 
 #endif
