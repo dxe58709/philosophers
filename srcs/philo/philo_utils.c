@@ -6,7 +6,7 @@
 /*   By: nsakanou <nsakanou@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 16:33:30 by nsakanou          #+#    #+#             */
-/*   Updated: 2024/02/07 13:52:24 by nsakanou         ###   ########.fr       */
+/*   Updated: 2024/02/08 14:25:24 by nsakanou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ unsigned int	get_current_time(void)
 
 void	print_message(char *str, t_philo *philo)
 {
-	if (!&check_philo_die)
+	if (!check_philo_die(philo))
 	{
 		pthread_mutex_lock(&philo->check_die->mutex);
 		printf("%d%d%s\n", get_current_time(), philo->philo_id, str);

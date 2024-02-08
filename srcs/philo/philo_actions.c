@@ -6,7 +6,7 @@
 /*   By: nsakanou <nsakanou@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 18:14:13 by nsakanou          #+#    #+#             */
-/*   Updated: 2024/02/07 20:17:49 by nsakanou         ###   ########.fr       */
+/*   Updated: 2024/02/08 14:29:21 by nsakanou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,12 @@
 
 int	check_philo_die(t_philo *philo)
 {
+	if (!philo || !philo->check_die)
+		return (-1);
 	pthread_mutex_lock(&philo->check_die->mutex);
 	if (philo->check_die->philo_dead == 1)
 	{
+		printf("%d%d died\n", get_current_time(), philo->philo_id);
 		pthread_mutex_unlock(&philo->check_die->mutex);
 		return (1);
 	}
