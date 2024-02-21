@@ -6,7 +6,7 @@
 /*   By: nsakanou <nsakanou@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 15:39:02 by nsakanou          #+#    #+#             */
-/*   Updated: 2024/02/07 20:36:21 by nsakanou         ###   ########.fr       */
+/*   Updated: 2024/02/21 19:37:17 by nsakanou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int	philo_atoi(char *str)
 
 	nb = 0;
 	flag = -1;
-
 	if (*str == '+')
 		str++;
 	while (ft_isdigit(*str))

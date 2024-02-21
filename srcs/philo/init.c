@@ -6,7 +6,7 @@
 /*   By: nsakanou <nsakanou@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 16:28:07 by nsakanou          #+#    #+#             */
-/*   Updated: 2024/02/08 15:28:36 by nsakanou         ###   ########.fr       */
+/*   Updated: 2024/02/21 20:16:32 by nsakanou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,20 @@ void	init_args(int argc, char **argv, t_args *args)
 		args->number_of_eat = -1;
 }
 
-void	init_philo_data(t_philo *philo, pthread_mutex_t *forks)
+void	init_philo_data(t_philo *philo, t_args args, pthread_mutex_t *forks)
 {
 	unsigned int	i;
 
 	i = 0;
-	while (i < philo->args.number_of_philo)
+	while (i < args.number_of_philo)
 	{
 		philo[i].philo_id = i + 1;
+		philo[i].count_eaten = 0;
 		philo[i].right_fork = &forks[i];
-		philo[i].left_fork = &forks[(i + 1) % philo->args.number_of_philo];
+		philo[i].left_fork = &forks[(i + 1) % args.number_of_philo];
+		philo[i].last_meal_time = get_current_time();
+		pthread_mutex_init(philo[i].count_eaten_mutex, NULL);
+		pthread_mutex_init(philo[i].last_meal_time_mutex, NULL);
 		i++;
 	}
 }
