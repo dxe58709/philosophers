@@ -6,7 +6,7 @@
 /*   By: nsakanou <nsakanou@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 18:14:13 by nsakanou          #+#    #+#             */
-/*   Updated: 2024/02/21 20:19:45 by nsakanou         ###   ########.fr       */
+/*   Updated: 2024/02/22 15:44:31 by nsakanou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,16 @@ int	takes_forks(t_philo *philo)
 void	philo_eating(t_philo *philo)
 {
 	print_message("is eating", philo);
+	pthread_mutex_lock(&philo->check_die->mutex);
 	philo->last_meal_time = get_current_time() - philo->starting_time;
-	philo->args.time_to_die = philo->last_meal_time;//←違う。：もし哲学者が死ぬまでの時間を食べ始めていなかったら
-//最後の食事の開始またはシミュレーションの開始からミリ秒後に死亡します。
-	//一定時間の間食事を続けます。この間、哲学者の死亡をチェックし、待機します
+	philo->args.time_to_die = philo->last_meal_time + philo->args.time_to_die;
+	pthread_mutex_unlock(&philo->check_die->mutex);
 	ft_usleep(philo->args.time_to_eat, philo);
+	pthread_mutex_lock(&philo->check_die->mutex);
 	if (philo->args.number_of_eat != -1)
-		philo->args.number_of_eat++;
+		philo->count_eaten++;
 	philo->last_meal_time = get_current_time();
+	pthread_mutex_unlock(&philo->check_die->mutex);
 	pthread_mutex_unlock(philo->left_fork);
 	pthread_mutex_unlock(philo->right_fork);
 }

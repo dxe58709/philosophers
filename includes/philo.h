@@ -6,7 +6,7 @@
 /*   By: nsakanou <nsakanou@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 16:49:14 by nsakanou          #+#    #+#             */
-/*   Updated: 2024/02/21 20:28:08 by nsakanou         ###   ########.fr       */
+/*   Updated: 2024/02/22 16:47:01 by nsakanou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stdbool.h>
 # include <sys/time.h>
 # include <pthread.h>
+# include <limits.h>
 
 typedef struct s_check_die
 {
@@ -43,7 +44,6 @@ typedef struct s_philo
 	pthread_mutex_t	*right_fork;
 	pthread_mutex_t	*left_fork;
 	int				starting_time;
-	unsigned int	finish_time;//各哲学者が最後に食事を開始してから経過した時間
 	unsigned int	last_meal_time;//各哲学者が最後に食事を終えた時間
 	pthread_mutex_t	*last_meal_time_mutex;
 	unsigned int	count_eaten;//各哲学者が食事を完了した回数
@@ -67,8 +67,9 @@ int				ft_usleep(unsigned int ms, t_philo *philo);
 int				philo_atoi(char *str);
 
 //init
-void			init_args(int argc, char **argv, t_args *args);
+void			init_args(int argc, char **argv, t_philo *philo);
 void			init_philo_data(t_philo *philo, t_args args,
 					pthread_mutex_t *forks);
-
+//thread
+void			start_dinner(t_philo *philo);
 #endif
